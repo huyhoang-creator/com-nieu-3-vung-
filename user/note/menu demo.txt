@@ -1,0 +1,123 @@
+<?php include 'include/connect_db.php'; ?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+  <header>
+    <?php include 'include/header.php'; ?>
+  </header>
+  <div class="container">
+    <div class="nav">
+      <button>Tất cả</button>
+      <button>Bún</button>
+      <button>Phở</button>
+      <button>Hủ tiếu</button>
+      <button>Bánh</button>
+      <button>Cơm</button>
+      <button>Đặc sản</button>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Tìm kiếm tên món...">
+      <button>Sắp xếp A - Z</button>
+    </div>
+    <?php
+    $result = $conn->query("SELECT dm.ten AS danh_muc, ma.ten, ma.mo_ta, ma.gia, ma.hinh_anh 
+                           FROM MON_AN ma 
+                           JOIN DANH_MUC dm ON ma.id_danh_muc = dm.id 
+                           WHERE ma.trang_thai = 'con_mon'");
+
+    $categories = [];
+    while ($row = $result->fetch_assoc()) {
+        $categories[$row['danh_muc']][] = $row;
+    }
+
+    $itemsPerPage = 4;
+    foreach ($categories as $cat_name => $items) {
+        $totalItems = count($items);
+        $totalPages = ceil($totalItems / $itemsPerPage);
+        $currentPage = 1;
+
+        echo "<div class='category'><h2>" . htmlspecialchars($cat_name) . "</h2>";
+        echo "<div class='category-container' data-total-pages='$totalPages' data-current-page='$currentPage' data-cat-name='" . htmlspecialchars($cat_name) . "'>";
+        echo "<div class='grid'>";
+        for ($i = 0; $i < min($itemsPerPage, $totalItems); $i++) {
+            $item = $items[$i];
+            echo "<div class='item'>";
+            if ($item['hinh_anh']) {
+                echo "<img src='img/" . htmlspecialchars($item['hinh_anh']) . "' alt='" . htmlspecialchars($item['ten']) . "' style='max-width: 100%; height: auto;'>";
+            }
+            echo htmlspecialchars($item['ten']) . "<br>";
+            if ($item['gia']) {
+                echo "<small>" . number_format($item['gia'], 0, ',', '.') . "đ</small>";
+            } else {
+                echo "<small>Giờ chuẩn bị</small>";
+            }
+            echo "</div>";
+        }
+        echo "</div>";
+        echo "<div class='pagination'>";
+        echo "<button class='prev' onclick='prevPage(\"" . htmlspecialchars($cat_name) . "\")'>❮</button>";
+        echo "<span class='page-info'>Trang 1 của $totalPages</span>";
+        echo "<button class='next' onclick='nextPage(\"" . htmlspecialchars($cat_name) . "\")'>❯</button>";
+        echo "</div>";
+        echo "</div></div>";
+    }
+    ?>
+  </div>
+  <footer>
+    <?php include 'include/footer.php'; ?>
+  </footer>
+
+  <script>
+    function prevPage(catName) {
+      const container = document.querySelector(`.category-container[data-cat-name="${catName}"]`);
+      let currentPage = parseInt(container.dataset.currentPage);
+      const totalPages = parseInt(container.dataset.totalPages);
+
+      if (currentPage > 1) {
+        currentPage--;
+        container.dataset.currentPage = currentPage;
+        updateGrid(catName, currentPage);
+      }
+    }
+
+    function nextPage(catName) {
+      const container = document.querySelector(`.category-container[data-cat-name="${catName}"]`);
+      let currentPage = parseInt(container.dataset.currentPage);
+      const totalPages = parseInt(container.dataset.totalPages);
+
+      if (currentPage < totalPages) {
+        currentPage++;
+        container.dataset.currentPage = currentPage;
+        updateGrid(catName, currentPage);
+      }
+    }
+
+    function updateGrid(catName, page) {
+      const container = document.querySelector(`.category-container[data-cat-name="${catName}"]`);
+      const grid = container.querySelector('.grid');
+      const items = <?php echo json_encode($categories); ?>;
+      const itemsPerPage = 4;
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const categoryItems = items[catName] || [];
+
+      grid.innerHTML = '';
+      for (let i = start; i < end && i < categoryItems.length; i++) {
+        const item = categoryItems[i];
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = item.hinh_anh ? `<img src='img/${item.hinh_anh}' alt='${item.ten}' style='max-width: 100%; height: auto;'>` : '';
+        div.innerHTML += `${item.ten}<br>`;
+        div.innerHTML += item.gia ? `<small>${item.gia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}đ</small>` : '<small>Giờ chuẩn bị</small>';
+        grid.appendChild(div);
+      }
+      container.querySelector('.page-info').textContent = `Trang ${page} của ${container.dataset.totalPages}`;
+    }
+  </script>
+</body>
+</html>

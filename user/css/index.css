@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    background: url('../img/slider-banner-1.webp') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Adjust opacity here (0 to 1) */
+
+}
+
+.overlay {
+    text-align: center;
+    background-color: rgba(255, 253, 253, 0);
+    padding: 40px;
+    border-radius: 10px;
+    z-index:1;
+}
+
+.vietnam-map {
+    width: 60px;
+    margin-bottom: 20px;
+
+}
+
+.mission h2 {
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.mission p {
+    font-size: 14px;
+
+}
+

@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 60px;
+    box-sizing: border-box;
+    margin-top: 100px;
+}
+
+.left-panel {
+    width: 55%;
+}
+
+.form-container {
+    background: #eda44b;
+    border: 1px solid #c67f2c;
+    border-radius: 12px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.2);
+    padding: 30px;
+    width: 400px;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-container p {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+form label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="tel"],
+form input[type="email"],
+form input[type="number"],
+form input[type="date"],
+form input[type="time"],
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.datetime-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.datetime-group div {
+    flex: 1;
+}
+
+.location-input {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.location-input input {
+    width: 100%;
+    padding-right: 30px;
+}
+
+.location-icon {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.choose-dish {
+    background: #eda44b;
+    border: 1px solid #000;
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+    display: block;
+    margin: 10px 0 15px 0;
+}
+
+form textarea {
+    height: 60px;
+    resize: vertical;
+    border-radius: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(#f3a34d, #eda44b);
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}

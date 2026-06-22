@@ -1,0 +1,19 @@
+<?php
+// Kết nối MySQL
+$link = mysqli_connect("localhost", "root", "") or die("Không thể kết nối đến máy chủ MySQL: " . mysqli_connect_error());
+
+
+mysqli_select_db($link, "web_test") or die("Không thể chọn cơ sở dữ liệu: " . mysqli_error($link));
+
+// Truy vấn SQL
+$query = "SELECT * FROM user";
+$kq = mysqli_query($link, $query) or die("Lỗi truy vấn: " . mysqli_error($link));
+
+// Hiển thị dữ liệu bằng while
+while ($d = mysqli_fetch_array($kq)) {
+    echo $d["HoTen"] . " có email là " . $d["Email"] . "<br/>";
+}
+
+// Đóng kết nối
+mysqli_close($link);
+?>

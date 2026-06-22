@@ -1,0 +1,79 @@
+.form-container {
+  max-width: 500px;
+  margin: 80px auto 0; /* Thêm khoảng cách từ top để tránh bị navbar che */
+  padding: 40px; /* Thêm padding cho form */
+}
+
+.intro {
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-form label {
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #222;
+}
+
+.booking-form input,
+.booking-form textarea {
+  padding: 8px 12px;
+  background-color: #f2eaea;
+  border: none;
+  border-radius: 2px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.booking-form textarea {
+  resize: vertical;
+}
+
+.booking-form button {
+  margin-top: 25px;
+  background-color: #f7941d;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.booking-form button:hover {
+  background-color: #d67a00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-container {
+    max-width: 90%;
+    margin-top: 60px;
+    padding: 20px;
+  }
+
+  .navbar {
+    padding: 2px 0;
+  }
+
+  .navbar ul {
+    gap: 15px;
+  }
+
+  .navbar a {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .logo {
+    width: 80px;
+  }
+}

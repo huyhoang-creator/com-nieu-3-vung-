@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhà Hàng 3 Miền - Menu</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="restaurant-name">Nhà Hàng 3 Miền</h1>
+                <div class="header-info">
+                    <p class="tagline">Hương vị truyền thống từ Bắc đến Nam</p>
+                    <p class="hours">Phục vụ từ 10:00 - 22:00</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Branch Selector -->
+            <div class="branch-selector">
+                <h3>Chọn chi nhánh</h3>
+                <div class="branch-grid">
+                    <div class="branch-card active" data-branch="1">
+                        <h4>Nhà hàng 3 Miền Hà Nội</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Phan Chu Trinh, Hoàn Kiếm, Hà Nội</p>
+                        <p><i class="fas fa-phone"></i> 0243123456</p>
+                        <p><i class="fas fa-clock"></i> 10:00 - 22:00</p>
+                    </div>
+                    <div class="branch-card" data-branch="2">
+                        <h4>Nhà hàng 3 Miền TP HCM</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> 456 Lê Lợi, Quận 1, TP HCM</p>
+                        <p><i class="fas fa-phone"></i> 0283456789</p>
+                        <p><i class="fas fa-clock"></i> 10:00 - 22:00</p>
+                    </div>
+                    <div class="branch-card" data-branch="3">
+                        <h4>Nhà hàng 3 Miền Đà Nẵng</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> 789 Trần Phú, Hải Châu, Đà Nẵng</p>
+                        <p><i class="fas fa-phone"></i> 0236789012</p>
+                        <p><i class="fas fa-clock"></i> 10:00 - 22:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Region Filter -->
+            <div class="region-filter">
+                <h3>Vùng miền</h3>
+                <div class="region-buttons">
+                    <button class="region-btn active" data-region="all">Tất cả vùng</button>
+                    <button class="region-btn" data-region="1">Miền Bắc</button>
+                    <button class="region-btn" data-region="2">Miền Trung</button>
+                    <button class="region-btn" data-region="3">Miền Nam</button>
+                </div>
+            </div>
+
+            <!-- Navigation Categories -->
+            <div class="nav-categories">
+                <h3>Danh mục món ăn</h3>
+                <div class="category-buttons">
+                    <button class="category-btn active" data-category="all">Tất cả món</button>
+                    <button class="category-btn" data-category="1">Món kho</button>
+                    <button class="category-btn" data-category="2">Món chính</button>
+                    <button class="category-btn" data-category="3">Món xào</button>
+                    <button class="category-btn" data-category="4">Canh - Súp</button>
+                    <button class="category-btn" data-category="5">Món rau</button>
+                    <button class="category-btn" data-category="6">Món bánh</button>
+                    <button class="category-btn" data-category="7">Món nước</button>
+                    <button class="category-btn" data-category="8">Đồ uống</button>
+                    <button class="category-btn" data-category="9">Món khác</button>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-section">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm món ăn..." class="search-input">
+                </div>
+                <button id="sortBtn" class="sort-btn">
+                    <i class="fas fa-sort"></i>
+                    Sắp xếp A - Z
+                </button>
+            </div>
+
+            <!-- Cart Info -->
+            <div class="cart-info">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Giỏ hàng: <span id="cartCount">0</span> món</span>
+            </div>
+
+            <!-- Menu Items -->
+            <div id="menuContainer" class="menu-container">
+                <!-- Miền Bắc -->
+                <div class="category-section" data-region="1">
+                    <h2 class="category-title">Miền Bắc</h2>
+                    <div class="menu-grid">
+                        <!-- Nem rán -->
+                        <div class="menu-item" data-name="Nem rán" data-category="2" data-region="1" data-price="120000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Nem rán">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Nem rán</h3>
+                                <p class="item-description">Nem rán giòn thơm với nhân thịt, nấm mèo, miến, cà rốt được bọc trong lớp bánh đa nem và chiên giòn</p>
+                                <div class="item-category">Món chính</div>
+                                <div class="item-footer">
+                                    <span class="item-price">120.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bánh cuốn -->
+                        <div class="menu-item" data-name="Bánh cuốn" data-category="6" data-region="1" data-price="85000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/5410400/pexels-photo-5410400.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bánh cuốn">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Bánh cuốn</h3>
+                                <p class="item-description">Bánh cuốn mỏng, mềm, thơm mùi gạo với nhân thịt băm, nấm mèo, hành khô</p>
+                                <div class="item-category">Món bánh</div>
+                                <div class="item-footer">
+                                    <span class="item-price">85.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phở -->
+                        <div class="menu-item" data-name="Phở" data-category="2" data-region="1" data-price="95000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/4518869/pexels-photo-4518869.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Phở">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Phở</h3>
+                                <p class="item-description">Phở bò với nước dùng ngọt thanh, bánh phở mềm, thịt bò tái thơm ngon</p>
+                                <div class="item-category">Món chính</div>
+                                <div class="item-footer">
+                                    <span class="item-price">95.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trà sen Hà Nội -->
+                        <div class="menu-item" data-name="Trà sen Hà Nội" data-category="8" data-region="1" data-price="35000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/4518869/pexels-photo-4518869.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Trà sen Hà Nội">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Trà sen Hà Nội</h3>
+                                <p class="item-description">Trà ướp hương sen thơm ngát</p>
+                                <div class="item-category">Đồ uống</div>
+                                <div class="item-footer">
+                                    <span class="item-price">35.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nước sấu -->
+                        <div class="menu-item" data-name="Nước sấu" data-category="8" data-region="1" data-price="30000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/3738088/pexels-photo-3738088.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Nước sấu">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Nước sấu</h3>
+                                <p class="item-description">Nước sấu truyền thống Hà Nội chua ngọt mát lạnh</p>
+                                <div class="item-category">Đồ uống</div>
+                                <div class="item-footer">
+                                    <span class="item-price">30.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trà đào cam sả -->
+                        <div class="menu-item" data-name="Trà đào cam sả" data-category="8" data-region="1" data-price="40000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/5410400/pexels-photo-5410400.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Trà đào cam sả">
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Trà đào cam sả</h3>
+                                <p class="item-description">Trà đào thơm ngọt với cam và sả</p>
+                                <div class="item-category">Đồ uống</div>
+                                <div class="item-footer">
+                                    <span class="item-price">40.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miền Trung -->
+                <div class="category-section" data-region="2">
+                    <h2 class="category-title">Miền Trung</h2>
+                    <div class="menu-grid">
+                        <!-- Bánh bèo Huế -->
+                        <div class="menu-item" data-name="Bánh bèo Huế" data-category="6" data-region="2" data-price="80000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/8753876/pexels-photo-8753876.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bánh bèo Huế">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Bánh bèo Huế</h3>
+                                <p class="item-description">Bánh bèo chan nước mắm chua ngọt và hành phi thơm phức</p>
+                                <div class="item-category">Món bánh</div>
+                                <div class="item-footer">
+                                    <span class="item-price">80.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nem lụi Huế -->
+                        <div class="menu-item" data-name="Nem lụi Huế" data-category="9" data-region="2" data-price="95000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/3738088/pexels-photo-3738088.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Nem lụi Huế">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Nem lụi Huế</h3>
+                                <p class="item-description">Nem lụi nướng thơm lừng ăn kèm với bánh tráng, rau sống và nước chấm</p>
+                                <div class="item-category">Món khác</div>
+                                <div class="item-footer">
+                                    <span class="item-price">95.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bún bò Huế -->
+                        <div class="menu-item" data-name="Bún bò Huế" data-category="2" data-region="2" data-price="110000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bún bò Huế">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Bún bò Huế</h3>
+                                <p class="item-description">Bún bò Huế với nước dùng đậm đà, cay nồng, thịt bò, giò heo, chả cua</p>
+                                <div class="item-category">Món chính</div>
+                                <div class="item-footer">
+                                    <span class="item-price">110.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miền Nam -->
+                <div class="category-section" data-region="3">
+                    <h2 class="category-title">Miền Nam</h2>
+                    <div class="menu-grid">
+                        <!-- Gỏi cuốn -->
+                        <div class="menu-item" data-name="Gỏi cuốn" data-category="6" data-region="3" data-price="75000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/5410400/pexels-photo-5410400.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Gỏi cuốn">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Gỏi cuốn</h3>
+                                <p class="item-description">Gỏi cuốn tôm thịt tươi mát với rau sống và bún</p>
+                                <div class="item-category">Món bánh</div>
+                                <div class="item-footer">
+                                    <span class="item-price">75.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bò bía -->
+                        <div class="menu-item" data-name="Bò bía" data-category="6" data-region="3" data-price="65000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/8753876/pexels-photo-8753876.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bò bía">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Bò bía</h3>
+                                <p class="item-description">Bò bía với nhân trứng, lạp xưởng, đậu phộng, rau thơm</p>
+                                <div class="item-category">Món bánh</div>
+                                <div class="item-footer">
+                                    <span class="item-price">65.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hủ tiếu Nam Vang -->
+                        <div class="menu-item" data-name="Hủ tiếu Nam Vang" data-category="2" data-region="3" data-price="95000">
+                            <div class="item-image">
+                                <img src="https://images.pexels.com/photos/6107787/pexels-photo-6107787.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Hủ tiếu Nam Vang">
+                                <div class="specialty-badge">
+                                    <i class="fas fa-star"></i>
+                                    Đặc trưng
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-name">Hủ tiếu Nam Vang</h3>
+                                <p class="item-description">Hủ tiếu với nước dùng trong veo, thịt bò, tôm, lòng heo và rau thơm</p>
+                                <div class="item-category">Món chính</div>
+                                <div class="item-footer">
+                                    <span class="item-price">95.000đ</span>
+                                    <button class="order-btn">Đặt món</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-content">
+                    <i class="fas fa-search no-results-icon"></i>
+                    <h3 class="no-results-title">Không tìm thấy món ăn</h3>
+                    <p class="no-results-text">Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Nhà Hàng 3 Miền</h3>
+                    <p class="footer-text">Mang đến hương vị đặc trưng của ba miền Bắc - Trung - Nam, với những món ăn truyền thống được chế biến từ nguyên liệu tươi ngon nhất.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Chi nhánh</h4>
+                    <div class="branch-info">
+                        <div>
+                            <p class="footer-text"><strong>Hà Nội:</strong> 123 Phan Chu Trinh, Hoàn Kiếm</p>
+                            <p class="footer-text">Tel: 0243123456</p>
+                        </div>
+                        <div>
+                            <p class="footer-text"><strong>TP HCM:</strong> 456 Lê Lợi, Quận 1</p>
+                            <p class="footer-text">Tel: 0283456789</p>
+                        </div>
+                        <div>
+                            <p class="footer-text"><strong>Đà Nẵng:</strong> 789 Trần Phú, Hải Châu</p>
+                            <p class="footer-text">Tel: 0236789012</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Giờ phục vụ</h4>
+                    <p class="footer-text">Thứ 2 - Chủ nhật</p>
+                    <p class="footer-text"><strong>10:00 - 22:00</strong></p>
+                    <p class="footer-text">Đặt bàn trước để có chỗ ngồi tốt nhất!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 Nhà Hàng 3 Miền. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/menu.js"></script>
+</body>
+</html>

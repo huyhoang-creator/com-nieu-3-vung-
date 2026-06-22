@@ -1,0 +1,67 @@
+<?php include 'include/connect_db.php'; ?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+  <header>
+    <?php include 'include/header.php'; ?>
+  </header>
+  <div class="container">
+    <div class="nav">
+      <button>Tất cả</button>
+      <button>Bún</button>
+      <button>Phở</button>
+      <button>Hủ tiếu</button>
+      <button>Bánh</button>
+      <button>Cơm</button>
+      <button>Đặc sản</button>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Tìm kiếm tên món...">
+      <button>Sắp xếp A - Z</button>
+    </div>
+    <?php
+    $result = $conn->query("SELECT dm.ten AS danh_muc, ma.ten, ma.mo_ta, ma.gia, ma.hinh_anh 
+                       FROM MON_AN ma 
+                       JOIN DANH_MUC dm ON ma.id_danh_muc = dm.id 
+                       WHERE ma.trang_thai = 'con_mon'");
+
+$categories = [];
+while ($row = $result->fetch_assoc()) {
+    $categories[$row['danh_muc']][] = $row;
+}
+
+foreach ($categories as $cat_name => $items) {
+    echo "<div class='category'><h2>" . htmlspecialchars($cat_name) . "</h2>";
+    echo "<div class='grid'>";
+    foreach ($items as $item) {
+        echo "<div class='item'>";
+        if ($item['hinh_anh']) {
+            echo "<img src='img/" . htmlspecialchars($item['hinh_anh']) . "' alt='" . htmlspecialchars($item['ten']) . "' style='max-width: 100%; height: auto;'>";
+        }
+        echo htmlspecialchars($item['ten']) . "<br>";
+        if ($item['gia']) {
+            echo "<small>" . number_format($item['gia'], 0, ',', '.') . "đ</small>";
+        } else {
+            echo "<small>Giờ chuẩn bị</small>";
+        }
+        echo "</div>";
+    }
+    // Điền các ô trống nếu số lượng item ít hơn 4
+    while (count($items) < 4) {
+        echo "<div class='item'></div>";
+        $items[] = null;
+    }
+    echo "</div></div>";
+}
+?>
+  </div>
+  <footer>
+    <?php include 'include/footer.php'; ?>
+  </footer>
+</body>
+</html>

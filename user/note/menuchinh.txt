@@ -1,0 +1,123 @@
+<?php include 'include/connect_db.php'; ?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhà Hàng 3 Miền - Menu</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+    <header>
+        <?php include 'include/header.php'; ?>
+    </header>
+    <div class="container">
+        <!-- Navigation Categories -->
+        <div class="nav-categories">
+            <h3>Danh mục món ăn</h3>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">Tất cả</button>
+                <button class="category-btn" data-category="bun">Bún</button>
+                <button class="category-btn" data-category="pho">Phở</button>
+                <button class="category-btn" data-category="hu_tieu">Hủ tiếu</button>
+                <button class="category-btn" data-category="banh">Bánh</button>
+                <button class="category-btn" data-category="com">Cơm</button>
+                <button class="category-btn" data-category="dac_san">Đặc sản</button>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-section">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Tìm kiếm tên món..." class="search-input">
+            </div>
+            <button id="sortBtn" class="sort-btn">
+                <i class="fas fa-sort"></i>
+                Sắp xếp A - Z
+            </button>
+        </div>
+
+        <!-- Cart Info -->
+        <div class="cart-info">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Giỏ hàng: <span id="cartCount">0</span> món</span>
+        </div>
+
+        <!-- Menu Items -->
+        <div id="menuContainer" class="menu-container">
+            <?php
+            $result = $conn->query("SELECT dm.ten AS danh_muc, ma.ten, ma.mo_ta, ma.gia, ma.hinh_anh , ma.trang_thai
+                                FROM MON_AN ma 
+                                JOIN DANH_MUC dm ON ma.id_danh_muc = dm.id 
+                                WHERE ma.trang_thai = 'con_mon'");
+
+            $categories = [];
+            while ($row = $result->fetch_assoc()) {
+                $categories[$row['danh_muc']][] = $row;
+            }
+
+            foreach ($categories as $cat_name => $items) {
+                echo "<div class='category-section' data-region='1'>";
+                echo "<h2 class='category-title'>" . htmlspecialchars($cat_name) . "</h2>";
+                echo "<div class='menu-grid'>";
+                foreach ($items as $item) {
+                    echo "<div class='menu-item' data-name='" . htmlspecialchars($item['ten']) . "' data-category='" . htmlspecialchars(strtolower(str_replace(' ', '_', $cat_name))) . "' data-price='" . ($item['gia'] ? $item['gia'] : 0) . "'>";
+                    echo "<div class='item-image'>";
+                    if ($item['hinh_anh']) {
+                        echo "<img src='img/" . htmlspecialchars($item['hinh_anh']) . "' alt='" . htmlspecialchars($item['ten']) . "'>";
+                    } else {
+                        echo "<img src='https://via.placeholder.com/400x300?text=Không+có+hình' alt='Không có hình'>";
+                    }
+                    if ($cat_name === 'Đặc sản') {
+                        echo "<div class='specialty-badge'><i class='fas fa-star'></i> Đặc trưng</div>";
+                    }
+                    echo "</div>";
+                    echo "<div class='item-content'>";
+                    echo "<h3 class='item-name'>" . htmlspecialchars($item['ten']) . "</h3>";
+                    echo "<p class='item-description'>" . htmlspecialchars($item['mo_ta']) . "</p>";
+                    echo "<p class='item-description'>" . htmlspecialchars($item['trang_thai']) . "</p>";
+                    echo "<div class='item-footer'>";
+                    if ($item['gia']) {
+                        echo "<span class='item-price'>" . number_format($item['gia'], 0, ',', '.') . "đ</span>";
+                    } else {
+                        echo "<span class='item-price'>Giờ chuẩn bị</span>";
+                    }
+                    echo "<button class='order-btn'>Đặt món</button>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+                // Điền các ô trống nếu số lượng item ít hơn 4
+                while (count($items) < 4) {
+                    echo "<div class='menu-item'></div>";
+                    $items[] = null;
+                }
+                echo "</div></div>";
+            }
+            ?>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="no-results" style="display: none;">
+            <div class="no-results-content">
+                <i class="fas fa-search no-results-icon"></i>
+                <h3 class="no-results-title">Không tìm thấy món ăn</h3>
+                <p class="no-results-text">Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <?php include 'include/footer.php'; ?>
+    </footer>
+
+    <script src="js/menu.js"></script>
+</body>
+</html>
+<?php
+// Đóng kết nối database
+$conn->close();
+?>

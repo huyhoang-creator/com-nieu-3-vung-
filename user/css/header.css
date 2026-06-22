@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica', 'Roboto', sans-serif;
+    margin-bottom: 120px; /* Loại bỏ margin mặc định của body */
+}
+
+.navbar {
+    position: fixed; /* Chỉ giữ fixed, loại bỏ absolute */
+    top: 0;
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+    z-index: 1000; /* Đặt z-index cao hơn để luôn hiển thị */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 0; /* Loại bỏ padding trái/phải 50px để loại bỏ khoảng trống */
+}
+
+.navbar::after {
+    content: ""; /* Cần thiết để ::after hiển thị */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5a2d0c; /* Màu nền */
+    opacity: 0.85; /* Độ mờ */
+    z-index: -1; /* Đẩy ra sau nội dung */
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    /* Loại bỏ margin hoặc padding không cần thiết */
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.navbar a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 15px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.navbar a:hover {
+    color: #9e9578; /* Vàng sáng nổi bật */
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.navbar a:hover::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffc107;
+}
